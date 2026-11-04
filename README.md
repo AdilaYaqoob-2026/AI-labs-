@@ -1,14 +1,20 @@
 # AI-labs-
 AI lab activity
+# lab 1
+##Exercise 1: Degree Honors RuleAdd a new rule to UNIVERSITY_KB["rules"] for students completing their degree program:
+#Add the code below in knowledge base 
+Condition: cgpa >= 3.70 and disciplinary_warnings == 0 
+→
+ Status: "Graduated with Magna Cum Laude Honors".
 UNIVERSITY_KB = {
     "rules": [
         {
-            "id": "degree_honors_magna_cum_laude",
+            "id": "RULE 7",
             "condition": {
                 "cgpa": {"operator": ">=", "value": 3.70},
                 "disciplinary_warnings": {"operator": "==", "value": 0},
             },
-            "condition_type": "all",
+            "condition_type": "award",
             "grade": "Magna Cum Laude",
             "status": "Graduated with Magna Cum Laude Honors",
             "action": "Award Magna Cum Laude honors",

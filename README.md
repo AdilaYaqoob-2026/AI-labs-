@@ -1,11 +1,12 @@
 # AI-labs-
 AI lab activity
 # lab 1
-##Exercise 1: Degree Honors RuleAdd a new rule to UNIVERSITY_KB["rules"] for students completing their degree program:
-#Add the code below in knowledge base 
+## Exercise 1:
+Degree Honors RuleAdd a new rule to UNIVERSITY_KB["rules"] for students completing their degree program:\
 Condition: cgpa >= 3.70 and disciplinary_warnings == 0 
 →
- Status: "Graduated with Magna Cum Laude Honors".
+ Status: "Graduated with Magna Cum Laude Honors".\
+ ** Add the code below in knowledge base **\
 UNIVERSITY_KB = {
     "rules": [
         {

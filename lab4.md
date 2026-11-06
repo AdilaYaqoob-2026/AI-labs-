@@ -1,4 +1,4 @@
-Here are the completed task implementations and the answers for the questions in Lab 4.
+# Lab 4.
 
 Important note:
 - The exact numerical results will vary because the starting state is random.
@@ -442,4 +442,3 @@ Discussion:
 - A valid N-Queens solution is a state with zero conflicts.
 - The algorithm is not guaranteed to solve the problem in one run, but it often succeeds when restarted.
 
-If you want, I can also turn this into a full notebook-style answer in the exact order of the lab cells (Cell 1, Cell 2, etc.), so you can paste it directly into Colab.

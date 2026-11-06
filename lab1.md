@@ -24,7 +24,7 @@ Add the rule below to the knowledge base to get a new rule for degree honors
         }
 ```
 
-### Updated Inference Engine
+### Inference Engine
 Now, extend the inference engine to evaluate the degree rule as well:
 
 ```python
@@ -67,15 +67,9 @@ print(f"Grade: {result_3['grade']} | Status: {result_3['status']}")
 print(f"Advisory Action: {result_3['action']}")
 ```
 
-### Expected Output
-```python
-Grade: A+ | Status: Graduated with Magna Cum Laude Honors
-Advisory Action: Eligible for graduate study and academic distinction.
-```
-
 ---
 
-## Exercise 2: Tracing Forward Chaining
+## Exercise 2: : Tracing Forward ChainingModify evaluate_student() to print each evaluated rule condition as the loop runs, demonstrating step-by-step logical deduction.
 
 ### Solution
 Modify the `evaluate_student()` function so it prints each rule evaluation as it checks conditions. This demonstrates forward chaining step by step.
@@ -199,4 +193,3 @@ These exercises demonstrate two important ideas in expert systems:
 - Inference Engine: applies logic to data and produces decisions.
 - Forward chaining: checks rules in sequence and triggers the first rule that matches the data.
 
-If you want, I can also convert these answers into a complete Google Colab notebook style version with all cells arranged exactly as you would paste into Colab.

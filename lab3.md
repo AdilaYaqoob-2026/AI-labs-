@@ -1,4 +1,4 @@
-# lab3
+# lab3: Misplaced tiles, Manhattan distance, A* search
 
 ### Cell 6 — Misplaced Tiles
 
@@ -89,16 +89,16 @@ The `nodes_expanded` count above excludes outdated entries that are popped and s
 
 ## Written answers
 
-**Why must both heuristics be zero at the goal?**  
+## Why must both heuristics be zero at the goal? 
 The true remaining cost at the goal is zero. An admissible heuristic cannot overestimate that cost, and these heuristics are nonnegative, so they must return zero there. If a heuristic returned a positive value at the goal, it would be inadmissible. More generally, an inadmissible heuristic can cause A* to choose a goal before finding the least-cost solution.
 
-**Why does the gap between heuristics grow with scramble depth?**  
+## Why does the gap between heuristics grow with scramble depth? 
 Manhattan Distance uses how far each tile is from its goal, while Misplaced Tiles only records whether each tile is wrong. The extra distance information helps A* prioritize more promising states. As puzzles get harder, the weaker heuristic tends to leave many more states looking equally promising, so the search can expand substantially more nodes. The exact point where the gap becomes clear depends on the generated puzzles and trial results.
 
-**Why is a higher admissible heuristic still admissible, and why can it reduce expansions?**  
+## Why is a higher admissible heuristic still admissible, and why can it reduce expansions? 
 Admissibility means a heuristic never exceeds the true remaining cost. Manhattan Distance is at least Misplaced Tiles for every state, but it still does not exceed the true cost: each move shifts one numbered tile by one grid step, so it can reduce the total Manhattan distance by at most one. A higher admissible estimate is more informative and can rule out more states as unable to lead to a cheaper solution, usually reducing expansions. The precise number of expansions can depend on tie-breaking and the puzzle.
 
-**Optional comparison:**  
+## Optional comparison:
 Manhattan Distance will generally solve deeper puzzles with fewer expansions than Misplaced Tiles, though both may become slow as difficulty increases.
 
 ## For your results table

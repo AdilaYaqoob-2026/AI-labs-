@@ -1,11 +1,12 @@
-# Lab 4.
+# Lab 4: Hill climbing
 
 Important note:
 - The exact numerical results will vary because the starting state is random.
 - The code below is the correct implementation for the lab.
 - For Task 2 and Task 3, I include the expected format and an example of how to record observations, rather than pretending there is a single fixed answer.
 
-1) Task 1: Create the state and print it
+## 1) Task 1:
+### Create the state and print it
 
 ```python
 state = [1, 3, 0, 2]
@@ -13,12 +14,12 @@ state = [1, 3, 0, 2]
 print("State:", state)
 ```
 
-Expected output:
+**Expected output:**
 ```python
 State: [1, 3, 0, 2]
 ```
 
-2) Random initial state
+### 2) Random initial state
 
 ```python
 import random
@@ -35,7 +36,7 @@ Example output:
 Random initial state: [2, 5, 1, 7, 0, 3, 6, 4]
 ```
 
-3) Count conflicts and evaluation function
+### 3) Count conflicts and evaluation function
 
 ```python
 def count_conflicts(state):
@@ -69,7 +70,7 @@ Conflicts: 0
 Evaluation score: 0
 ```
 
-4) Generate neighboring states
+### 4) Generate neighboring states
 
 ```python
 def get_neighbors(state):
@@ -98,7 +99,7 @@ for neighbor in neighbors[:5]:
 For N = 8:
 - Each state has 8 × 7 = 56 neighbors
 
-5) Basic Hill-Climbing implementation
+### 5) Basic Hill-Climbing implementation
 
 ```python
 def hill_climbing(n):
@@ -121,7 +122,7 @@ def hill_climbing(n):
     return current, scores
 ```
 
-6) Run Hill-Climbing for 8 queens
+### 6) Run Hill-Climbing for 8 queens
 
 ```python
 solution, scores = hill_climbing(8)
@@ -148,7 +149,7 @@ A valid solution was found.
 
 Sometimes the algorithm stops before finding a solution; that is expected.
 
-7) Display the board
+### 7) Display the board
 
 ```python
 def print_board(state):
@@ -169,7 +170,7 @@ Usage:
 print_board(solution)
 ```
 
-8) Plot the evaluation-score graph
+### 8) Plot the evaluation-score graph
 
 ```python
 import matplotlib.pyplot as plt
@@ -183,12 +184,12 @@ plt.grid(True)
 plt.show()
 ```
 
-Interpretation:
+**Interpretation:**
 - The score is non-decreasing because the algorithm only accepts improving moves.
 - If the final score is 0, a valid solution was found.
 - If the final score is negative, the search stopped at a non-goal state.
 
-9) Experiment with different board sizes
+### 9) Experiment with different board sizes
 
 ```python
 for n in [4, 8, 10, 12]:
@@ -211,7 +212,8 @@ N = 12 | Conflicts =  6 | Iterations = 42 | Solved = False
 
 This is just one example; your output will differ.
 
-10) Task 2: Record observations in the table
+## 10) Task 2:
+### Record observations in the table
 
 Use this format:
 
@@ -233,12 +235,12 @@ A sample table:
 | 10 | 2 | 0 | 40 | Yes |
 | 10 | 3 | 6 | 33 | No |
 
-Discussion:
+**Discussion:**
 - The same board size does not always produce the same result.
 - This is because the algorithm starts from a random initial state.
 - Some random starts are good and lead to a solution; others lead to local maxima.
 
-11) Random-Restart Hill-Climbing
+### 11) Random-Restart Hill-Climbing
 
 ```python
 def random_restart_hill_climbing(n, max_restarts=100):
@@ -279,7 +281,7 @@ else:
 print_board(solution)
 ```
 
-12) Plot Random-Restart progress
+### 12) Plot Random-Restart progress
 
 ```python
 plt.figure(figsize=(9, 5))
@@ -291,11 +293,11 @@ plt.grid(True)
 plt.show()
 ```
 
-Interpretation:
+**Interpretation:**
 - The graph is non-decreasing because it stores the best score found so far.
 - Once the score reaches 0, the algorithm has found a valid solution and stops.
 
-13) Compare basic and random-restart Hill-Climbing
+## 13) Compare basic and random-restart Hill-Climbing
 
 ```python
 print("Basic Hill-Climbing")
@@ -327,82 +329,83 @@ for i in range(5):
     )
 ```
 
-Task 3 answers:
-1. Did basic Hill-Climbing find a solution in every run?
+## Task 3
+### answers:
+### 1. Did basic Hill-Climbing find a solution in every run?
    - No, not always.
    - Some runs stop at local maxima.
 
-2. Did Random-Restart Hill-Climbing improve the results?
+### 2. Did Random-Restart Hill-Climbing improve the results?
    - Usually yes.
    - It gives the algorithm multiple chances to start from better random positions.
 
-3. How many restarts were needed to find a solution?
+### 3. How many restarts were needed to find a solution?
    - This varies.
    - Sometimes 1 or 2; sometimes more.
 
-4. Did any random-restart experiment reach its restart limit without finding a solution?
+### 4. Did any random-restart experiment reach its restart limit without finding a solution?
    - It is possible, especially if the restart limit is too small or unlucky random starts happen repeatedly.
 
-5. Why can Random-Restart improve the probability of success without guaranteeing success within a fixed number of attempts?
+### 5. Why can Random-Restart improve the probability of success without guaranteeing success within a fixed number of attempts?
    - Because each restart is an independent chance.
    - Even if the chance of success per try is not high, repeating the process increases the chance of eventually finding a solution.
    - It is not guaranteed in a fixed number of attempts.
 
-14) Lab Questions and Answers
+## 17) Lab Questions and Answers
 
-Question 1: What is the purpose of the evaluation function in Hill-Climbing?
+### Question 1: What is the purpose of the evaluation function in Hill-Climbing?
 - The evaluation function measures how good a state is.
 - In N-Queens, it tells us how many conflicts exist.
 - We use the score as:
   - evaluation(state) = -count_conflicts(state)
 - We want the highest possible score, because zero conflicts gives the best score of 0.
 
-Question 2: Why is an evaluation score of zero the best result in our N-Queens implementation?
+### Question 2: Why is an evaluation score of zero the best result in our N-Queens implementation?
 - Because zero conflicts means no two queens attack each other.
 - That is exactly the goal condition for N-Queens.
 - Since evaluation = -conflicts, the maximum possible score is 0.
 
-Question 3: What is the difference between a local maximum and a global maximum?
+### Question 3: What is the difference between a local maximum and a global maximum?
 - A local maximum is a state that is better than all its immediate neighbors, but not necessarily the best state in the entire search space.
 - A global maximum is the best possible state in the whole state space.
 - In this problem, a local maximum may still have some conflicts left, while the global maximum is a valid, conflict-free solution.
 
-Question 4: Why can basic Hill-Climbing stop without finding a solution even when a solution exists?
+### Question 4: Why can basic Hill-Climbing stop without finding a solution even when a solution exists?
 - Because the algorithm only looks at immediate neighbors and moves only when a better neighbor exists.
 - It may reach a local maximum where every neighbor is worse, even though a better state exists elsewhere in the search space.
 - It does not explore far enough away from the current state.
 
-Question 5: Does reaching a local maximum always mean that the algorithm has failed? Explain.
+### Question 5: Does reaching a local maximum always mean that the algorithm has failed? Explain.
 - No.
 - If the local maximum is also the global maximum and satisfies the goal condition, then it is a successful solution.
 - However, in N-Queens, a local maximum often still has conflicts; in that case the algorithm has failed to reach a valid state.
 
-Question 6: For N = 8, how many neighbors does each state have in our implementation?
+### Question 6: For N = 8, how many neighbors does each state have in our implementation?
 - Each queen can move to any of the 7 other rows in its column.
 - There are 8 columns, so the total number of neighbors is:
   - 8 × 7 = 56 neighbors
 
-Question 7: What does the evaluation-score graph tell you about the behavior of Hill-Climbing?
+### Question 7: What does the evaluation-score graph tell you about the behavior of Hill-Climbing?
 - The graph shows whether the algorithm is improving the state over time.
 - The score rises only when the algorithm moves to a better neighbor.
 - When no neighbor improves the current score, the search stops.
 - If the final score is 0, the algorithm found a valid solution.
 
-Question 8: Explain probabilistic completeness in your own words.
+### Question 8: Explain probabilistic completeness in your own words.
 - An algorithm is probabilistically complete if, with repeated independent attempts, the probability of finding a solution approaches 1 as the number of attempts increases.
 - In simple words: if you keep trying from different random starts, your chance of eventually succeeding becomes very high.
 
-Question 9: Why does Random-Restart Hill-Climbing improve the chance of finding a solution?
+### Question 9: Why does Random-Restart Hill-Climbing improve the chance of finding a solution?
 - Because each restart begins from a different random state.
 - This reduces the chance that the search always gets trapped in the same local maximum.
 - By trying many different starts, the algorithm has more chances to encounter a successful path.
 
-Question 10: Does probabilistic completeness guarantee that a solution will be found within 100 restarts? Why or why not?
+### Question 10: Does probabilistic completeness guarantee that a solution will be found within 100 restarts? Why or why not?
 - No.
 - Probabilistic completeness means the probability of success approaches 1 as the number of restarts grows, but it does not guarantee success in any fixed number of attempts.
 - With 100 restarts, there may still be a nonzero probability of failure.
 
-15) Extension Task: Solve N = 20
+## 18) Extension Task: Solve N = 20
 
 Use this code:
 
@@ -435,7 +438,7 @@ Discussion:
 - The chance of getting stuck at a local maximum increases.
 - Random restarts help, but larger N often requires more restarts or can still fail within a fixed limit.
 
-16) Final takeaway
+### 19) Final learning outcomes
 - Hill-Climbing is a greedy, local search method.
 - It is fast and simple, but it can get stuck at local maxima.
 - Random-Restart Hill-Climbing improves the chance of success by trying multiple starting states.

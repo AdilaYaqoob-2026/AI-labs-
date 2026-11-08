@@ -12,23 +12,23 @@ Using the original maze and the original direction order:
 
 ### Answers
 
-1. Which algorithm found the shorter path?
+### 1. Which algorithm found the shorter path?
    - BFS found the shorter path.
 
-2. Which algorithm had the larger maximum frontier?
+### 2. Which algorithm had the larger maximum frontier?
    - DFS had the larger maximum frontier in this run (5 vs. 3).
 
-3. Why did the two algorithms produce different paths on the same maze?
+### 3. Why did the two algorithms produce different paths on the same maze?
    - Because they manage the frontier differently:
      - BFS uses a queue (FIFO): it expands nodes in order of discovery by distance from the start.
      - DFS uses a stack (LIFO): it keeps going down one branch before backtracking.
    - This changes which route is explored first.
 
-4. Does DFS always produce the shortest path? Why or why not?
+### 4. Does DFS always produce the shortest path? Why or why not?
    - No. DFS is not guaranteed to find the shortest path because it commits to one branch and may go deep before checking other branches.
    - It may find a longer route before a shorter one.
 
-5. Does BFS always produce the shortest path when every movement costs 1? Why?
+### 5. Does BFS always produce the shortest path when every movement costs 1? Why?
    - Yes. BFS explores nodes by increasing distance from the start.
    - The first time BFS reaches the goal, it is at the minimum number of moves from the start, so it guarantees the shortest path in an unweighted maze.
 
@@ -44,20 +44,20 @@ Changed order:
 
 ### Answer
 
-Did the DFS path change?
+### Did the DFS path change?
 - Yes, the DFS path usually changes when the neighbor order changes.
 
-Why?
+### Why?
 - DFS explores the next neighbor in the order it appears in the list.
 - Different orders cause the algorithm to follow different branches first, so it can find a different route to the goal.
 
-Did BFS’s path depend on this ordering the same way?
+### Did BFS’s path depend on this ordering the same way?
 - Not in the same way.
 - BFS is still layer-by-layer and still guarantees a shortest path length.
 - Neighbor ordering can change which shortest path is chosen if there are multiple equally short paths, but BFS still explores by distance, not by branch depth.
 - DFS is much more sensitive to neighbor ordering because it chooses one branch and keeps going.
 
-Note: In many mazes, BFS may still return the same path length even if the exact route changes, as long as there are multiple shortest routes.
+***Note***: In many mazes, BFS may still return the same path length even if the exact route changes, as long as there are multiple shortest routes.
 
 ---
 
@@ -73,26 +73,26 @@ Example results for several maze pairs:
 
 ### Answers
 
-6. Does BFS’s path length ever change if you re-run it with the same `start`/`goal`? Does DFS’s?
+### 6. Does BFS’s path length ever change if you re-run it with the same `start`/`goal`? Does DFS’s?
    - With the same start and goal and the same code, both algorithms are deterministic, so the path length will not change on repeated runs.
    - However, if the neighbor order changes, DFS may produce a different path length because its branch choice changes.
    - BFS does not usually change the path length for a fixed start/goal, because it always expands by distance.
 
-7. As the distance between `start` and `goal` grows, what happens to the maximum frontier size for each algorithm?
+### 7. As the distance between `start` and `goal` grows, what happens to the maximum frontier size for each algorithm?
    - BFS frontier tends to grow much more quickly as distance increases, because it expands all nodes at the current depth before moving deeper.
    - DFS frontier is often smaller at a given moment because it follows a single branch and backtracks, but in some mazes it can still become large.
    - In general:
      - BFS tends to have a larger frontier when the maze is wide and branching.
      - DFS usually keeps a smaller frontier, but can still grow substantially in complex graphs.
 
-8. Can you find a `(start, goal)` pair where BFS and DFS return the same path? What does that tell you about the maze structure between those two points?
+### 8. Can you find a `(start, goal)` pair where BFS and DFS return the same path? What does that tell you about the maze structure between those two points?
    - Yes. A simple example is:
      - start = (0, 4)
      - goal = (4, 4)
    - Both algorithms can follow the same open path along the right side of the maze.
    - This tells us that the maze structure is simple and there is not much branching between those two positions, so both search methods happen to choose the same route.
 
-9. What happens if `goal` is unreachable from `start` (e.g. sealed off by walls)? Try it — what do `bfs()` and `dfs()` return?
+### 9. What happens if `goal` is unreachable from `start` (e.g. sealed off by walls)? Try it — what do `bfs()` and `dfs()` return?
    - They both return:
      - `None` for the path
      - plus the final frontier size reached before the search exhausted all possible nodes

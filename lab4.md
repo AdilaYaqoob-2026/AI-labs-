@@ -70,7 +70,7 @@ Conflicts: 0
 Evaluation score: 0
 ```
 
-### 4) Generate neighboring states
+### 7) Generate neighboring states
 
 ```python
 def get_neighbors(state):
@@ -99,7 +99,7 @@ for neighbor in neighbors[:5]:
 For N = 8:
 - Each state has 8 × 7 = 56 neighbors
 
-### 5) Basic Hill-Climbing implementation
+### 8) Basic Hill-Climbing implementation
 
 ```python
 def hill_climbing(n):
@@ -122,7 +122,7 @@ def hill_climbing(n):
     return current, scores
 ```
 
-### 6) Run Hill-Climbing for 8 queens
+### 9) Run Hill-Climbing for 8 queens
 
 ```python
 solution, scores = hill_climbing(8)
@@ -149,7 +149,7 @@ A valid solution was found.
 
 Sometimes the algorithm stops before finding a solution; that is expected.
 
-### 7) Display the board
+### 10) Display the board
 
 ```python
 def print_board(state):
@@ -170,7 +170,7 @@ Usage:
 print_board(solution)
 ```
 
-### 8) Plot the evaluation-score graph
+### 11) Plot the evaluation-score graph
 
 ```python
 import matplotlib.pyplot as plt
@@ -189,7 +189,7 @@ plt.show()
 - If the final score is 0, a valid solution was found.
 - If the final score is negative, the search stopped at a non-goal state.
 
-### 9) Experiment with different board sizes
+### 12) Experiment with different board sizes
 
 ```python
 for n in [4, 8, 10, 12]:
@@ -240,7 +240,7 @@ A sample table:
 - This is because the algorithm starts from a random initial state.
 - Some random starts are good and lead to a solution; others lead to local maxima.
 
-### 11) Random-Restart Hill-Climbing
+### 13) Random-Restart Hill-Climbing
 
 ```python
 def random_restart_hill_climbing(n, max_restarts=100):
@@ -281,7 +281,7 @@ else:
 print_board(solution)
 ```
 
-### 12) Plot Random-Restart progress
+### 15) Plot Random-Restart progress
 
 ```python
 plt.figure(figsize=(9, 5))
@@ -297,7 +297,7 @@ plt.show()
 - The graph is non-decreasing because it stores the best score found so far.
 - Once the score reaches 0, the algorithm has found a valid solution and stops.
 
-## 13) Compare basic and random-restart Hill-Climbing
+## 16) Compare basic and random-restart Hill-Climbing
 
 ```python
 print("Basic Hill-Climbing")

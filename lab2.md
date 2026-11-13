@@ -8,7 +8,7 @@ Using the original maze and the original direction order:
 | Algorithm | Path Length | Maximum Frontier |
 |---|---:|---:|
 | BFS | 8 | 3 |
-| DFS | 10 | 5 |
+| DFS | 8 | 3 |
 
 ### Answers
 
